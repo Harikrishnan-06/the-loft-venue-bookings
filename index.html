@@ -86,21 +86,23 @@ button{
 </div>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp }
-from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCHzOsZpSWN7fwEXALbPzPsknjROPp5Bf4",
-  authDomain: "the-loft-hub.firebaseapp.com",
-  projectId: "the-loft-hub",
-  storageBucket: "the-loft-hub.firebasestorage.app",
-  messagingSenderId: "720306031954",
-  appId: "1:720306031954:web:1f242a6e1531fe58587e8b"
-};
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyARfIggpW8iJOhCmRr524veDckEd3mIMxM",
+    authDomain: "the-loft-hub-239e8.firebaseapp.com",
+    projectId: "the-loft-hub-239e8",
+    storageBucket: "the-loft-hub-239e8.firebasestorage.app",
+    messagingSenderId: "635281672074",
+    appId: "1:635281672074:web:fec44500ad1f403d962a73"
+  };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
 
 window.submitBooking = async () => {
   await addDoc(collection(db,"bookings"),{
