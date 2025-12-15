@@ -86,39 +86,43 @@ button{
 </div>
 
 <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp }
+from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyB6py7f_H_2QN78RD3wIVZPL6rv42z0vDc",
-    authDomain: "the-loft-hub-9538a.firebaseapp.com",
-    projectId: "the-loft-hub-9538a",
-    storageBucket: "the-loft-hub-9538a.firebasestorage.app",
-    messagingSenderId: "440048841718",
-    appId: "1:440048841718:web:221724fa0428d108f90dd7"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-
-window.submitBooking = async () => {
-  await addDoc(collection(db,"bookings"),{
-    name:name.value,
-    email:email.value,
-    phone:phone.value,
-    eventType:eventType.value,
-    date:date.value,
-    guests:guests.value,
-    notes:notes.value,
-    status:"Pending",
-    staffNotes:"",
-    createdAt:serverTimestamp()
-  });
-  msg.innerText="Booking request submitted successfully!";
+const firebaseConfig = {
+  apiKey: "AIzaSyCHzOsZpSWN7fwEXALbPzPsknjROPp5Bf4",
+  authDomain: "the-loft-hub.firebaseapp.com",
+  projectId: "the-loft-hub",
+  storageBucket: "the-loft-hub.firebasestorage.app",
+  messagingSenderId: "720306031954",
+  appId: "1:720306031954:web:1f242a6e1531fe58587e8b"
 };
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+document.getElementById("submitBtn").addEventListener("click", async () => {
+  try {
+    await addDoc(collection(db, "bookings"), {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      eventType: document.getElementById("eventType").value,
+      date: document.getElementById("date").value,
+      guests: document.getElementById("guests").value,
+      notes: document.getElementById("notes").value,
+      status: "Pending",
+      staffNotes: "",
+      createdAt: serverTimestamp()
+    });
+
+    document.getElementById("msg").innerText =
+      "✅ Booking request submitted successfully!";
+  } catch (error) {
+    alert("❌ Error submitting booking: " + error.message);
+  }
+});
 </script>
 </body>
 </html>
