@@ -8,17 +8,17 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
 
-body{
+body {
   font-family:'Montserrat',sans-serif;
-  /* Fancy Animated Multi-color Gradient */
+  /* FANCY ANIMATED BACKGROUND */
   background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #4a1942);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
   padding: 20px;
 }
 
@@ -28,20 +28,19 @@ body{
   100% { background-position: 0% 50%; }
 }
 
-.card{
+.card {
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding:35px;
-  width:100%;
+  padding: 35px;
+  width: 100%;
   max-width: 500px;
-  border-radius:24px;
-  color:#fff;
-  box-shadow:0 30px 60px rgba(0,0,0,0.5);
+  border-radius: 24px;
+  color: #fff;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
 }
 
-/* Header Image Container */
 .hero-image {
   width: 100%;
   height: 200px;
@@ -58,9 +57,9 @@ body{
   display: block;
 }
 
-.brand{text-align:center;margin-bottom:25px;}
-.brand h1{margin:0;letter-spacing:4px; font-weight: 700; font-size: 28px;}
-.brand span{font-size:13px; opacity:0.8; letter-spacing: 1px;}
+.brand { text-align: center; margin-bottom: 25px; }
+.brand h1 { margin: 0; letter-spacing: 4px; font-weight: 700; font-size: 28px; }
+.brand span { font-size: 13px; opacity: 0.8; letter-spacing: 1px; }
 
 input, select, textarea {
   width: 100%;
@@ -73,19 +72,20 @@ input, select, textarea {
   font-family: inherit;
   background: rgba(255, 255, 255, 0.95);
   box-sizing: border-box;
+  color: #333;
 }
 
-button{
-  width:100%;
-  margin-top:25px;
-  padding:16px;
-  border:none;
-  border-radius:35px;
-  font-size:16px;
-  font-weight:700;
+button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 16px;
+  border: none;
+  border-radius: 35px;
+  font-size: 16px;
+  font-weight: 700;
   background: linear-gradient(135deg, #ff416c, #ff4b2b);
-  color:white;
-  cursor:pointer;
+  color: white;
+  cursor: pointer;
   transition: all 0.3s ease;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -97,11 +97,10 @@ button:hover {
 }
 
 .success {
-    text-align:center;
-    margin-top:18px;
-    color:#00ffcc;
-    font-weight: 600;
-    min-height: 20px;
+  text-align: center;
+  margin-top: 18px;
+  color: #00ffcc;
+  font-weight: 600;
 }
 </style>
 </head>
@@ -109,7 +108,7 @@ button:hover {
 <body>
 <div class="card">
   <div class="hero-image">
-    <img src="https://files.oaiusercontent.com/file-0x3d0y0l1m2n3p4q5r6s7t8u?se=2024-05-22T12%3A00%3A00Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20private%2C%20immutable&rscd=attachment%3B%20filename%3Dloft_hub_interior.jpg" alt="The Loft Hub Interior">
+    <img src="loft-hub.jpg" alt="The Loft Hub Interior">
   </div>
 
   <div class="brand">
@@ -157,8 +156,6 @@ const db = getFirestore(app);
 document.getElementById("submitBtn").addEventListener("click", async () => {
   const btn = document.getElementById("submitBtn");
   const msgDiv = document.getElementById("msg");
-
-  // Input elements
   const fields = ["name", "email", "phone", "eventType", "date", "guests", "notes"];
   
   btn.innerText = "Processing...";
@@ -177,15 +174,12 @@ document.getElementById("submitBtn").addEventListener("click", async () => {
       createdAt: serverTimestamp()
     });
 
-    msgDiv.innerText = "✅ Request Sent! We will contact you soon.";
+    msgDiv.innerText = "✅ Request Sent Successfully!";
 
-    // --- AUTOMATICALLY CLEAR ALL WORDS FROM SECTIONS ---
-    fields.forEach(id => {
-        document.getElementById(id).value = "";
-    });
+    // AUTOMATICALLY CLEAR ALL WORDS
+    fields.forEach(id => { document.getElementById(id).value = ""; });
 
   } catch (error) {
-    msgDiv.style.color = "#ff4b2b";
     msgDiv.innerText = "❌ Error. Please try again.";
   } finally {
     btn.innerText = "Request Booking";
